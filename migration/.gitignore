@@ -1,0 +1,5 @@
+# Dumps contain real procurement records, attachments and auth password
+# hashes. They must never reach a git remote.
+dump/
+*.csv
+*.columns

@@ -1,0 +1,78 @@
+# edospmis tables in foreign-key load order.
+# Computed from pg_constraint on 2026-10-04. 65 tables, 9 levels.
+# Level 0 has no dependencies; each level may reference earlier ones only.
+
+# -- level 0 --
+edospmis_permissions
+edospmis_plans
+edospmis_platform_admins
+edospmis_tenants
+# -- level 1 --
+edospmis_approval_rules
+edospmis_budget_periods
+edospmis_business_units
+edospmis_categories
+edospmis_clients
+edospmis_match_tolerances
+edospmis_queues
+edospmis_roles
+edospmis_sla_policies
+edospmis_sod_settings
+edospmis_subscriptions
+edospmis_supplier_doc_types
+edospmis_users
+edospmis_workflows
+# -- level 2 --
+edospmis_ai_conversations
+edospmis_approval_steps
+edospmis_audit_logs
+edospmis_branches
+edospmis_catalogue_items
+edospmis_contract_templates
+edospmis_delegations
+edospmis_procurement_templates
+edospmis_role_permissions
+edospmis_subscription_payments
+edospmis_suppliers
+edospmis_user_roles
+edospmis_webhooks
+edospmis_workflow_versions
+# -- level 3 --
+edospmis_ai_messages
+edospmis_departments
+edospmis_webhook_deliveries
+# -- level 4 --
+edospmis_cases
+edospmis_teams
+# -- level 5 --
+edospmis_approvals
+edospmis_budgets
+edospmis_case_attachments
+edospmis_case_stage_history
+edospmis_deliveries
+edospmis_memberships
+edospmis_notifications
+edospmis_queue_entries
+edospmis_rfqs
+edospmis_workflow_instances
+# -- level 6 --
+edospmis_bid_submissions
+edospmis_prs
+edospmis_purchase_orders
+edospmis_quotations
+edospmis_rfq_requirements
+edospmis_rfq_suppliers
+edospmis_workflow_tasks
+# -- level 7 --
+edospmis_bid_documents
+edospmis_bid_template_responses
+edospmis_contracts
+edospmis_evaluations
+edospmis_grns
+edospmis_invoices
+# -- level 8 --
+edospmis_contract_events
+edospmis_contract_parties
+edospmis_grn_items
+edospmis_inspections
+edospmis_match_exceptions

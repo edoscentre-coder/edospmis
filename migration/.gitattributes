@@ -1,0 +1,7 @@
+# These run under bash, including on Linux and macOS. Git's autocrlf would
+# check them out with CRLF line endings on Windows, and a shell script whose
+# shebang ends in \r fails with "bad interpreter: /bin/bash^M" -- an error
+# that names the interpreter and never mentions line endings.
+*.sh text eol=lf
+*.sql text eol=lf
+*.txt text eol=lf
