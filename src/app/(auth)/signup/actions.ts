@@ -1,6 +1,7 @@
 "use server";
 
 import { headers } from "next/headers";
+import { originFromHeaders } from "@/lib/site-url";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
@@ -15,15 +16,6 @@ export interface SignUpState {
   email?: string;
 }
 
-/** The address this request arrived on, so the link comes back to the same place. */
-async function origin(): Promise<string> {
-  const h = await headers();
-  const host = h.get("x-forwarded-host") ?? h.get("host") ?? "localhost:3000";
-  const proto =
-    h.get("x-forwarded-proto") ??
-    (host.startsWith("localhost") ? "http" : "https");
-  return `${proto}://${host}`;
-}
 
 /**
  * Creates the account, and emails the confirmation as EDOSPMIS.
@@ -56,7 +48,7 @@ export async function signUp(
   if (password.length < 8)
     return { error: "Password must be at least 8 characters." };
 
-  const base = await origin();
+  const base = originFromHeaders(await headers());
 
   // pending_tenant_name survives to the first moment a session exists, which
   // is where the workspace actually gets created — see lib/provision.ts.

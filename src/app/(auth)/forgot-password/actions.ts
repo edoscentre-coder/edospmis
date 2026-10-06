@@ -1,6 +1,7 @@
 "use server";
 
 import { headers } from "next/headers";
+import { originFromHeaders } from "@/lib/site-url";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { canSendEmail, sendEmail } from "@/lib/notify/email";
 import { passwordResetEmail } from "@/lib/notify/auth-email";
@@ -34,13 +35,6 @@ function rateLimited(email: string): boolean {
   return false;
 }
 
-/** The address this request arrived on, so the link comes back to the same place. */
-async function origin(): Promise<string> {
-  const h = await headers();
-  const host = h.get("x-forwarded-host") ?? h.get("host") ?? "localhost:3000";
-  const proto = h.get("x-forwarded-proto") ?? (host.startsWith("localhost") ? "http" : "https");
-  return `${proto}://${host}`;
-}
 
 /**
  * Emails a password-reset link, as EDOSPMIS.
@@ -81,7 +75,7 @@ export async function requestPasswordReset(
     return { error: "Password reset isn't set up yet. Please contact support." };
   }
 
-  const base = await origin();
+  const base = originFromHeaders(await headers());
   const { data, error } = await admin.auth.admin.generateLink({
     type: "recovery",
     email: address,
